@@ -1,11 +1,11 @@
 services:
-  ros2_docker_template_base:
+  so100_base:
     build:
       context: .
       target: base
       args:
         ROS_DISTRO: humble
-    container_name: ros2_docker_template_base_container
+    container_name: so100_base_container
 
     # === Tune this to your application ===
     network_mode: "host"
@@ -38,19 +38,10 @@ services:
       rttime: -1
       memlock: 8428281856
 
-  ros2_docker_template_overlay:
-    extends: ros2_docker_template_base
+  so100_overlay:
+    extends: so100_base
     build:
       context: .
       target: overlay
-    container_name: ros2_docker_template_overlay_container
-
-  ros2_docker_template_talker_example:
-    extends: ros2_docker_template_overlay
-    container_name: ros2_docker_template_talker_container
-    command: >
-      bash -c "
-      source /opt/ros/$$ROS_DISTRO/setup.bash &&
-      source install/setup.bash &&
-      ros2 run demo_nodes_cpp talker"
+    container_name: so100_overlay_container
 

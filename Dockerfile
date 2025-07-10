@@ -53,6 +53,8 @@ RUN apt-get update && \
     cmake \
     libpoco-dev \
     libeigen3-dev \
+    ros-${ROS_DISTRO}-ros2-control \
+    ros-${ROS_DISTRO}-ros2-controllers \
     dpkg
 
 
@@ -64,6 +66,16 @@ USER $USERNAME
 RUN mkdir -p /home/ros/ros2_ws/src
 
 WORKDIR /home/ros/ros2_ws/src
+
+RUN git clone https://github.com/brukg/so_arm_100_hardware.git
+RUN git clone https://github.com/brukg/SO-100-arm.git so_arm_100_base
+
+WORKDIR /home/ros/ros2_ws
+
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash && \
+    rosdep update && \ 
+    rosdep install --from-paths src --ignore-src -r -y && \
+    colcon build --symlink-install
 
 FROM osrf/ros:${ROS_DISTRO}-desktop AS overlay
 

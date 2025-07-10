@@ -1,11 +1,11 @@
 services:
-  ros2_docker_template:
+  so100_ros2_dev:
     build:
       context: ..
       target: base
       args:
         ROS_DISTRO: humble
-    container_name: ros2_docker_template_devcontainer
+    container_name: so100_ros2_devcontainer
 
     # === Tune this to your application ===
     network_mode: "host"

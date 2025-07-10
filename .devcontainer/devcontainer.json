@@ -1,14 +1,11 @@
 {
-    "name": "ROS 2 - Project",
+    "name": "ROS 2 - So100",
     "privileged": true,
     "remoteUser": "ros",
     "dockerComposeFile": "./docker-compose.yaml",
-    "workspaceFolder": "/home/ros/ros2_ws/src/ros2_docker_template",
-    "service": "ros2_docker_template",
+    "workspaceFolder": "/home/ros/ros2_ws/src/so100_ros2",
+    "service": "so100_ros2_dev",
     "features": {
-        "ghcr.io/duduribeiro/devcontainer-features/neovim:1": {
-            "version": "stable"
-        },
         "ghcr.io/devcontainers/features/node:1": {
             "version": "lts"
         },
@@ -17,8 +14,8 @@
         }
     },
     "mounts": [
-        "source=${localWorkspaceFolder},target=/home/ros/ros2_ws/src/ros2_docker_template,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder},target=/home/ros/ros2_ws/src/so100_ros2,type=bind,consistency=cached",
         "source=${localEnv:HOME}/.env,target=/home/ros/.env,type=bind,consistency=cached"
     ],
-    "postStartCommand": "/bin/bash /home/ros/ros2_ws/src/ros2_docker_template/.devcontainer/post_create.sh"
+    "postStartCommand": "/bin/bash /home/ros/ros2_ws/src/so100_ros2/.devcontainer/post_create.sh"
 }
